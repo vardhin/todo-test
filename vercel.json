@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "client/todo/package.json",
+        "use": "@vercel/static-build",
+        "config": { "distDir": "client/todo/dist" }
+      },
+      {
+        "src": "my-todo-app/index.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      { "src": "/api/(.*)", "dest": "my-todo-app/index.js" }, 
+      { "src": "/(.*)", "dest": "client/todo/$1" }
+    ]
+  }
+  
